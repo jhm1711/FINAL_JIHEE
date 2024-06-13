@@ -6,7 +6,7 @@ const descriptions = {
   "button-2":
     "많은 지역에서 화장시설이 부족한 사태이고 2025년 초고령 사회로의 진입이 전망되는 상황에서 화장시설 확대 필요성은 더욱 증가하고 있다.",
   "button-3":
-    "두 화장장 합, 총 34대의 화장로가 있음에도 서울시는 버거운 상황이다. 화장장은 혐오시설로 인식되기 때문에 부족한 상황에서도 시설 확충이 어려운 상황이다.",
+    "인구가 많은 서울시는 권장 화장 건수를 가장 큰 폭으로 초과하고 있다. 하지만 화장장은 혐오시설로 인식되기 때문에 부족한 상황에서도 서울 같은 도심에서 시설 확충이 어려운 상황이다.",
 };
 
 const buttons = document.querySelectorAll(".buttons");
@@ -14,7 +14,7 @@ const textDesc = document.getElementById("text-desc");
 
 // let isButton2Clicked = false;
 
-let circles;
+let circles, path;
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -29,22 +29,12 @@ buttons.forEach((button) => {
       textDesc.style.display = "block";
 
       if (button.id === "button-1") {
-        // 버튼 1 클릭 시 처리
-        if (textDesc.textContent === descriptions["button-1"]) {
-          path
-            .transition()
-            .duration(500)
-            .attr("stroke-width", 2)
-            .attr("stroke", "white");
-        } else {
-          path
-            .transition()
-            .duration(500)
-            .attr("stroke-width", 1)
-            .attr("stroke", "#6f6f6f");
-        }
+        path
+          .transition()
+          .duration(500)
+          .attr("stroke-width", 2)
+          .attr("stroke", "white");
       } else if (button.id === "button-2") {
-        // 버튼 2 클릭 시 처리
         svg
           .selectAll("circle")
           .transition()
@@ -58,7 +48,6 @@ buttons.forEach((button) => {
               : radiusScale(d.cases)
           );
       } else if (button.id === "button-3") {
-        // 버튼 3 클릭 시 처리
         const filteredData = data.filter(
           (d) => d.daily === 52 || d.daily === 112
         );
@@ -74,7 +63,6 @@ buttons.forEach((button) => {
               : radiusScale(d.cases)
           );
       } else {
-        // 기타 버튼 처리
         console.log("Other button clicked");
       }
     }
@@ -82,13 +70,18 @@ buttons.forEach((button) => {
 });
 
 function resetChart() {
-  // 차트 초기화 함수
   svg
     .selectAll("circle")
     .transition()
     .duration(500)
     .attr("fill-opacity", 0.5)
     .attr("r", (d) => radiusScale(d.cases));
+
+  path
+    .transition()
+    .duration(500)
+    .attr("stroke-width", 1)
+    .attr("stroke", "#6f6f6f");
 }
 
 // SVG 요소 생성
@@ -165,7 +158,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
 
   yAxisGroup.call(yAxis);
 
-  const circles = svg
+  circles = svg
     .selectAll("circle")
     .data(data)
     .enter()
@@ -174,7 +167,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     .attr("cy", (d) => yScale(d.daily))
     .attr("r", (d) => radiusScale(d.cases))
     .attr("fill", (d) =>
-      yScale(d.daily) < yScale(d.crematorium * 3.3) ? "yellow" : "#939393"
+      yScale(d.daily) < yScale(d.crematorium * 3.3) ? "yellow" : "#6f6f6f"
     )
     .attr("fill-opacity", 0.5)
     .on("mouseover", function (event, d) {
@@ -223,7 +216,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     .x((d) => xScale(d.crematorium))
     .y((d) => yScale(d.crematorium * 3.3));
 
-  const path = svg
+  path = svg
     .append("path")
     .datum([{ crematorium: 0, cases: 0, daily: 0 }, ...data])
     .attr("stroke", "#6f6f6f")
@@ -236,11 +229,11 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     .append("text")
     .attr("class", "line-text")
     .attr("x", xScale(lastDatum.crematorium) + 470)
-    .attr("y", yScale(lastDatum.crematorium * 3.3 - 4))
+    .attr("y", yScale(lastDatum.crematorium * 3.3 - 3))
     .attr("dy", ".35em")
     .attr(
       "transform",
-      `rotate(-22, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
+      `rotate(-21.5, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
         lastDatum.crematorium * 3.3
       )})`
     )
