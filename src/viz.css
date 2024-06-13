@@ -1,0 +1,152 @@
+body {
+  background-color: black;
+}
+
+.content {
+  display: flex;
+  flex-direction: row; /* 요소들을 가로로 배치 */
+  align-items: center; /* 세로 정렬 기준은 가운데로 */
+  justify-content: flex-start; /* 가로 정렬 기준은 왼쪽으로 */
+
+  gap: 10px; /* 엘리먼트 사이 간격 */
+}
+
+#svg-container {
+  /* border: 1px solid red; */
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+#svg {
+  width: 100%;
+  height: 120%;
+  /* border: 1px solid red; */
+  /* background-color: #f7f7f7; */
+}
+
+h1 {
+  font-family: "Hahmlet", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-container button {
+  cursor: pointer;
+  border: 0.5px solid rgb(73, 73, 73);
+  background-color: rgba(108, 108, 108, 0);
+  border-radius: 3px;
+  color: rgb(147, 147, 147);
+}
+
+.button-container button:hover {
+  background-color: rgba(255, 255, 255, 0.13);
+}
+
+/* p1 {
+  font-family: "Hahmlet", serif;
+  font-optical-sizing: auto;
+  font-weight: 00;
+  font-style: normal;
+  font-size: 10px;
+  color: white;
+} */
+
+.tick {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  color: #969696;
+}
+
+/* .y-axis .domain {
+  display: none;
+} */
+/* .y-axis .tick line {
+  stroke: #dfdfdf;
+} */
+
+.domain {
+  stroke: #8c8c8c;
+}
+
+.axis-label {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+  font-style: normal;
+  font-size: 13px;
+  fill: #a4a4a4;
+}
+
+.line-text {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 12px;
+  fill: #8d8d8d;
+}
+
+.legend-texts {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  text-transform: capitalize;
+}
+
+.tooltip {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.tooltip-text {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  fill: white;
+  font-size: 12px;
+}
+
+/* Buttons */
+.button-container {
+  width: 98%;
+  max-width: 900px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+#text-desc {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  position: relative;
+  left: 300px;
+  color: white;
+}
+
+.bubble {
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 150;
+  font-style: thin;
+}

@@ -1,0 +1,63 @@
+city,district,name,crematorium,cases,daily
+seoul,seoul-si,서울시립승화원,23,40208,112
+seoul,seoul-si,서울추모공원,11,18706,52
+busan,geumjeong,부산영락공원,15,25459,71
+daegu,daegu-si,대구명복공원,11,17603,49
+incheon,incheon-si,인천가족공원 화장시설,20,25942,72
+gwangju,gwangju-si,광주영락공원,11,13465,37
+daejeon,daejeon-si,대전시정수원,10,10540,29
+ulsan,ulsan-si,울산하늘공원,10,8481,23
+sejong,sejong-si,은하수공원 해님의집(화장장),10,9029,25
+gyeonggi,sungnam,성남시장례문화사업소,15,17613,49
+gyeonggi,suwon,수원시연화장 승화원,9,12193,34
+gyeonggi,yongin,용인평온의숲(나래원),12,11529,32
+gyeonggi,hwaseong,화성함백산추모공원(화장),13,17876,50
+gangwon,gangneung,청솔공원 솔향하늘길,4,2577,7
+gangwon,donghae,동해삼척 공동화장장(승화원),3,1581,4
+gangwon,sokcho,속초시승화원,3,1590,4
+gangwon,wonju,원주추모공원 화장장,7,7136,20
+gangwon,inje,하늘내린도리안,2,1386,4
+gangwon,jeongseon,정선하늘터,2,486,1
+gangwon,chuncheon,춘천안식원,6,6177,17
+gangwon,taebaek,태백시화장장,3,1581,4
+chungbuk,jecheon,제천시영원한쉼터,4,2566,7
+chungbuk,cheongju,청주시목련공원,11,8618,24
+chungbuk,chungju,충주시시설관리공단,6,3327,9
+chungnam,gongju,공주나래원,5,4710,13
+chungnam,cheonan,천안추모공원,9,9564,26
+chungnam,hongseong,홍성추모공원,8,6279,17
+jeonbuk,gunsan,군산시승화원,5,3961,11
+jeonbuk,namwon,남원시승화원,4,1716,5
+jeonbuk,iksan,익산시정수원,5,4161,12
+jeonbuk,jeonju,전주시승화원,8,5829,17
+jeonbuk,jeongeup,서남권추모공원,5,5456,15
+jeonnam,goheung,국립소록도병원화장장,,0,0
+jeonnam,gokseong,재단법인 아름다운청계공원,1,15988,44
+jeonnam,gwangyang,광양시화장장,5,1440,4
+jeonnam,mokpo,목포추모공원,6,9371,26
+jeonnam,suncheon,순천시립추모공원,5,4971,14
+jeonnam,yeosu,여수시영락공원 승화원,5,3071,9
+jeonnam,haenam,남도광역추모공원,4,3558,10
+gyeongbuk,gyeongju,경주하늘마루,8,4388,12
+gyeongbuk,gumi,구미시추모공원,7,4638,13
+gyeongbuk,gimcheon,김천시화장장,2,2564,7
+gyeongbuk,mungyeong,문경예송원,3,1635,5
+gyeongbuk,sangju,상주시승천원,3,1629,5
+gyeongbuk,andong,안동장사문화공원,5,3034,8
+gyeongbuk,yeongju,영주시화장장,2,1448,4
+gyeongbuk,ulreung,울릉하늘섬공원,2,118,1
+gyeongbuk,uljin,울진군립추모원,3,1201,3
+gyeongbuk,uiseong,의성군공설화장장,4,1907,5
+gyeongbuk,pohang,포항시립구룡포화장장,1,625,2
+gyeongbuk,pohang,포항시우현화장장,3,4734,13
+gyeongnam,goseong,고성군공설화장장,2,1125,3
+gyeongnam,gimhae,김해추모의공원,6,4793,13
+gyeongnam,namhae,남해추모누리 영화원,3,1843,5
+gyeongnam,milyang,밀양시공설화장시설,3,2473,7
+gyeongnam,sacheon,사천시누리원(화장시설),4,2466,7
+gyeongnam,jinju,진주시안락공원,7,5887,16
+gyeongnam,changwon,창원시립마산화장장,3,1970,5
+gyeongnam,changwon,창원시립상복공원,8,7329,20
+gyeongnam,tongyeong,통영시추모공원,4,2300,6
+gyeongnam,haman,함안하늘공원(화장시설),4,2508,7
+jeju,jeju-si,양지공원,8,11856,33
