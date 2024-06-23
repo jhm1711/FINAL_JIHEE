@@ -4,11 +4,11 @@ body {
 
 .content {
   display: flex;
-  flex-direction: row; /* 요소들을 가로로 배치 */
-  align-items: center; /* 세로 정렬 기준은 가운데로 */
-  justify-content: flex-start; /* 가로 정렬 기준은 왼쪽으로 */
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 
-  gap: 10px; /* 엘리먼트 사이 간격 */
+  gap: 10px;
 }
 
 #svg-container {
@@ -60,11 +60,11 @@ h1 {
 
 .buttons.highlighted {
   font-weight: bold;
-  color: rgb(255, 255, 255); /* 원하는 강조 색상으로 변경 가능 */
+  color: rgb(255, 255, 255);
 }
 
 .buttons.active {
-  background-color: #f0f0f0; /* 예시로 백그라운드 컬러를 변경 */
+  background-color: #f0f0f0;
   color: #333;
 }
 
@@ -142,7 +142,7 @@ h1 {
   font-family: "Noto Sans KR", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
-  font-size: 12px;
+  font-size: 15px;
   position: fixed;
   top: 150px;
   left: 310px;

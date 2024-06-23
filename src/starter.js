@@ -18,7 +18,6 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const isSelected = textDesc.textContent === descriptions[button.id];
 
-    // 모든 버튼에서 active 클래스 제거
     buttons.forEach((btn) => {
       btn.classList.remove("active");
     });
@@ -33,7 +32,6 @@ buttons.forEach((button) => {
       textDesc.classList.remove("hidden");
       textDesc.style.display = "block";
 
-      // 현재 클릭된 버튼에 active 클래스 추가
       button.classList.add("active");
 
       if (button.id === "button-1") {
@@ -170,7 +168,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
 
   const lineData = [
     { x: 0, y: 0 },
-    { x: 23, y: 23 * 3.3 }, // 화장로수에 3.3을 곱한 값으로 y 좌표를 설정합니다.
+    { x: 23, y: 23 * 3.3 },
   ];
 
   // line 함수 정의
@@ -302,7 +300,6 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     // path 업데이트
     path.datum(lineData).attr("d", line);
 
-    // 마지막 데이터를 기반으로 한 lineText 위치 업데이트
     const lastDatum = data[data.length - 1];
 
     lineText
