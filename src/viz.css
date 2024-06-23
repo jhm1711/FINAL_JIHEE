@@ -58,6 +58,16 @@ h1 {
   background-color: rgba(255, 255, 255, 0.13);
 }
 
+.buttons.highlighted {
+  font-weight: bold;
+  color: rgb(255, 255, 255); /* 원하는 강조 색상으로 변경 가능 */
+}
+
+.buttons.active {
+  background-color: #f0f0f0; /* 예시로 백그라운드 컬러를 변경 */
+  color: #333;
+}
+
 /* p1 {
   font-family: "Hahmlet", serif;
   font-optical-sizing: auto;
@@ -69,9 +79,9 @@ h1 {
 
 .tick {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 200;
-  color: #969696;
+  color: #e5e5e5;
 }
 
 /* .y-axis .domain {
@@ -90,8 +100,8 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 350;
   font-style: normal;
-  font-size: 13px;
-  fill: #a4a4a4;
+  font-size: 16px;
+  fill: #cecece;
 }
 
 .line-text {
@@ -99,8 +109,8 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: 12px;
-  fill: #8d8d8d;
+  font-size: 13px;
+  fill: #cdcdcd;
 }
 
 .tooltip {

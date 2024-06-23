@@ -12,13 +12,18 @@ const descriptions = {
 const buttons = document.querySelectorAll(".buttons");
 const textDesc = document.getElementById("text-desc");
 
-// let isButton2Clicked = false;
-
 let circles, path;
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (textDesc.textContent === descriptions[button.id]) {
+    const isSelected = textDesc.textContent === descriptions[button.id];
+
+    // 모든 버튼에서 active 클래스 제거
+    buttons.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    if (isSelected) {
       textDesc.textContent = "";
       textDesc.classList.add("hidden");
       textDesc.style.display = "none";
@@ -28,19 +33,23 @@ buttons.forEach((button) => {
       textDesc.classList.remove("hidden");
       textDesc.style.display = "block";
 
+      // 현재 클릭된 버튼에 active 클래스 추가
+      button.classList.add("active");
+
       if (button.id === "button-1") {
         path
           .transition()
           .duration(500)
           .attr("stroke-width", 2)
-          .attr("stroke", "white");
+          .attr("stroke", "white")
+          .attr("stroke-dasharray", "8, 8");
       } else if (button.id === "button-2") {
         svg
           .selectAll("circle")
           .transition()
           .duration(500)
           .attr("fill-opacity", (d) =>
-            yScale(d.daily) < yScale(d.crematorium * 3.3) ? 1 : 0.5
+            yScale(d.daily) < yScale(d.crematorium * 3.3) ? 1 : 0.7
           )
           .attr("r", (d) =>
             yScale(d.daily) < yScale(d.crematorium * 3.3)
@@ -70,18 +79,19 @@ buttons.forEach((button) => {
 });
 
 function resetChart() {
-  svg
-    .selectAll("circle")
-    .transition()
-    .duration(500)
-    .attr("fill-opacity", 0.5)
-    .attr("r", (d) => radiusScale(d.cases));
-
   path
     .transition()
     .duration(500)
     .attr("stroke-width", 1)
-    .attr("stroke", "#6f6f6f");
+    .attr("stroke", "#7c7c7c")
+    .attr("stroke-dasharray", "8, 8");
+
+  svg
+    .selectAll("circle")
+    .transition()
+    .duration(500)
+    .attr("fill-opacity", 0.7)
+    .attr("r", (d) => radiusScale(d.cases));
 }
 
 // SVG 요소 생성
@@ -158,6 +168,45 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
 
   yAxisGroup.call(yAxis);
 
+  const lineData = [
+    { x: 0, y: 0 },
+    { x: 23, y: 23 * 3.3 }, // 화장로수에 3.3을 곱한 값으로 y 좌표를 설정합니다.
+  ];
+
+  // line 함수 정의
+  const line = d3
+    .line()
+    .x((d) => xScale(d.x))
+    .y((d) => yScale(d.y))
+    .curve(d3.curveLinear);
+
+  // 라인 차트 그리기
+  path = svg
+    .append("path")
+    .datum(lineData)
+    .attr("class", "line")
+    .attr("d", line)
+    .attr("stroke", "#7c7c7c")
+    .attr("stroke-width", 1)
+    .attr("fill", "none")
+    .attr("stroke-dasharray", "8, 8");
+
+  const lastDatum = data[data.length - 1];
+
+  const lineText = svg
+    .append("text")
+    .attr("class", "line-text")
+    .attr("x", xScale(lastDatum.crematorium) + 470)
+    .attr("y", yScale(lastDatum.crematorium * 3.3 - 3))
+    .attr("dy", ".35em")
+    .attr(
+      "transform",
+      `rotate(-21.5, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
+        lastDatum.crematorium * 3.3
+      )})`
+    )
+    .text("정부 권장 가동횟수");
+
   circles = svg
     .selectAll("circle")
     .data(data)
@@ -169,7 +218,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     .attr("fill", (d) =>
       yScale(d.daily) < yScale(d.crematorium * 3.3) ? "yellow" : "#6f6f6f"
     )
-    .attr("fill-opacity", 0.5)
+    .attr("fill-opacity", 0.7)
     .on("mouseover", function (event, d) {
       let tooltipX = xScale(d.crematorium) - 80;
       let tooltipY = yScale(d.daily) - 20;
@@ -211,34 +260,6 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
       svg.select("#tooltip-bg").remove();
     });
 
-  const line = d3
-    .line()
-    .x((d) => xScale(d.crematorium))
-    .y((d) => yScale(d.crematorium * 3.3));
-
-  path = svg
-    .append("path")
-    .datum([{ crematorium: 0, cases: 0, daily: 0 }, ...data])
-    .attr("stroke", "#6f6f6f")
-    .attr("stroke-width", 1)
-    .attr("d", line);
-
-  const lastDatum = data[data.length - 1];
-
-  const lineText = svg
-    .append("text")
-    .attr("class", "line-text")
-    .attr("x", xScale(lastDatum.crematorium) + 470)
-    .attr("y", yScale(lastDatum.crematorium * 3.3 - 3))
-    .attr("dy", ".35em")
-    .attr(
-      "transform",
-      `rotate(-21.5, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
-        lastDatum.crematorium * 3.3
-      )})`
-    )
-    .text("정부 권장 가동횟수");
-
   // resize
   window.addEventListener("resize", updateChart);
 
@@ -254,6 +275,7 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
     xAxisGroup
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(xAxis);
+
     yAxisGroup.call(yAxis);
 
     xAxisLabel.attr(
@@ -271,17 +293,29 @@ d3.json("data/2022_crematorium_2.json").then((raw_data) => {
       .attr("cy", (d) => yScale(d.daily))
       .attr("r", (d) => radiusScale(d.cases));
 
-    path.attr("d", line);
+    const line = d3
+      .line()
+      .x((d) => xScale(d.x))
+      .y((d) => yScale(d.y))
+      .curve(d3.curveLinear);
+
+    // path 업데이트
+    path.datum(lineData).attr("d", line);
+
+    // 마지막 데이터를 기반으로 한 lineText 위치 업데이트
+    const lastDatum = data[data.length - 1];
 
     lineText
       .attr("x", xScale(lastDatum.crematorium) + 470)
       .attr("y", yScale(lastDatum.crematorium * 3.3 - 3))
       .attr(
         "transform",
-        `rotate(-26, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
+        `rotate(-21.5, ${xScale(lastDatum.crematorium) + 5}, ${yScale(
           lastDatum.crematorium * 3.3
         )})`
-      )
-      .text("정부 권장 가동횟수");
+      );
+
+    svg.select("#tooltip").remove();
+    svg.select("#tooltip-bg").remove();
   }
 });
